@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "ibcarpet",
+	"version": "${version}",
+	"name": "ibcarpet",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"TKpersona"
+	],
+	"contact": {
+		"homepage": "https://github.com/tkperson/ibcarpet",
+		"sources": "https://github.com/tkperson/ibcarpet"
+	},
+	"license": "GPL-3.0",
+	"icon": "assets/ibcarpet/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.ibcarpet.Ibcarpet"
+		]
+	},
+	"mixins": [
+		"ibcarpet.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"carpet": "=26.1.x",
+		"minecraft": "~26.1.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
