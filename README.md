@@ -1,9 +1,17 @@
 # ibcarpet
 
-## Setup
+A carpet extension mod. A port of
+[JoaCarpet](https://github.com/JoakimThorsen/JoaCarpet)'s insane behavior
+feature to the newer version of Minecraft.
 
-For setup instructions, please see the [Fabric Documentation page](https://docs.fabricmc.net/develop/getting-started/creating-a-project#setting-up) related to the IDE that you are using.
+Insane behavior is used to test item entity RNG by giving user control over the
+random number generator to forcibly generate highly unlikely numbers without
+waiting for hours.
 
-## License
+Currently this extension supports item entity RNG controls over the following actions:
 
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+- Breaking minecart
+- Piston breaking blocks
+- Breaking containers (chest, dropper, hopper)
+- Dispense RNG (dispenser, crafter, dropper)
+- Projectile
