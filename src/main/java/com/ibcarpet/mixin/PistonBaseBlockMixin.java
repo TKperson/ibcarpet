@@ -1,6 +1,6 @@
 package com.ibcarpet.mixin;
 
-import com.ibcarpet.IbcarpetSettings;
+import com.ibcarpet.IBCarpetSettings;
 import com.ibcarpet.distributions.Distribution;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -36,7 +36,7 @@ public class PistonBaseBlockMixin {
             @Nullable BlockEntity blockEntity,
             Operation<Void> original
     ) {
-        if (!IbcarpetSettings.enabled) {
+        if (!IBCarpetSettings.insaneBehaviors) {
             original.call(blockState, level, blockPos, blockEntity);
             return;
         }

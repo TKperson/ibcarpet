@@ -1,6 +1,5 @@
 package com.ibcarpet;
 
-import carpet.CarpetServer;
 import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.resources.Identifier;
@@ -8,7 +7,7 @@ import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Ibcarpet implements ModInitializer {
+public class IBCarpet implements ModInitializer {
 	public static final String MOD_ID = "ibcarpet";
 
 	// This logger is used to write text to the console and the log file.
@@ -23,7 +22,7 @@ public class Ibcarpet implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Hello Fabric world!");
-		IbcarpetExtension.loadExtension();
+		IBCarpetExtension.loadExtension();
 	}
 
 	public static Identifier id(String path) {

@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.ibcarpet.Ibcarpet"
+			"com.ibcarpet.IBCarpet"
 		]
 	},
 	"mixins": [

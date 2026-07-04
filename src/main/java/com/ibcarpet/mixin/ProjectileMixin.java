@@ -1,6 +1,6 @@
 package com.ibcarpet.mixin;
 
-import com.ibcarpet.IbcarpetSettings;
+import com.ibcarpet.IBCarpetSettings;
 import com.ibcarpet.distributions.Distribution;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
@@ -30,7 +30,7 @@ public class ProjectileMixin {
             float _pow,
             float uncertainty
     ) {
-        if (!IbcarpetSettings.enabled) {
+        if (!IBCarpetSettings.insaneBehaviors) {
             return original.call(normalizedDeltaPositionInstance, originalVelocityX, originalVelocityY, originalVelocityZ);
         }
 

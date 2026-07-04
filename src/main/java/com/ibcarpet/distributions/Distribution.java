@@ -1,6 +1,6 @@
 package com.ibcarpet.distributions;
 
-import net.minecraft.util.RandomSource;
+import com.ibcarpet.IBCarpetSettings;
 import net.minecraft.world.level.levelgen.RandomSupport;
 import net.minecraft.world.level.levelgen.Xoroshiro128PlusPlus;
 
@@ -16,7 +16,6 @@ public interface Distribution {
         return x;
     }
 
-    public static Distribution distribution = new Uniform();
     public static Xoroshiro128PlusPlus random = new Xoroshiro128PlusPlus(new RandomSupport.Seed128bit(
             System.currentTimeMillis(),
             mix64(System.currentTimeMillis())
@@ -27,7 +26,11 @@ public interface Distribution {
     }
 
     public static Distribution getCurrentDistribution() {
-        return distribution;
+        return switch (IBCarpetSettings.ibDistribution) {
+            case IBCarpetSettings.DistributionType.UNIFORM -> new Uniform();
+            case IBCarpetSettings.DistributionType.BIMODAL -> new Bimodal();
+            case IBCarpetSettings.DistributionType.DISCRETE -> new Discrete();
+        };
     }
 
     public double sample();
