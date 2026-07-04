@@ -40,7 +40,7 @@ public class PistonBaseBlockMixin {
             original.call(blockState, level, blockPos, blockEntity);
             return;
         }
-        // net.minecraft.world.level.block.Block.dropResources(net.minecraft.world.level.block.state.BlockState, net.minecraft.world.level.LevelAccessor, net.minecraft.core.BlockPos, net.minecraft.world.level.block.entity.BlockEntity)
+
         if (level instanceof ServerLevel serverLevel) {
             Block.getDrops(blockState, serverLevel, blockPos, blockEntity).forEach(stack -> customPopResource(serverLevel, blockPos, stack));
             blockState.spawnAfterBreak(serverLevel, blockPos, ItemStack.EMPTY, true);
@@ -56,7 +56,11 @@ public class PistonBaseBlockMixin {
         double y = pos.getY() + 0.5 + distribution.sample() * 0.25 - halfHeight;
         double z = pos.getZ() + 0.5 + distribution.sample() * 0.25;
 
-        Supplier<ItemEntity> entityFactory = () -> new ItemEntity(level, x, y, z, itemStack);
+        double velocityX = distribution.sampleUnit() * 0.2 - 0.1;
+        double velocityY = 0.2;
+        double velocityZ = distribution.sampleUnit() * 0.2 - 0.1;
+
+        Supplier<ItemEntity> entityFactory = () -> new ItemEntity(level, x, y, z, itemStack, velocityX, velocityY, velocityZ);
 
         if (level instanceof ServerLevel serverLevel && !itemStack.isEmpty() && serverLevel.getGameRules().get(GameRules.BLOCK_DROPS)) {
             ItemEntity entity = entityFactory.get();

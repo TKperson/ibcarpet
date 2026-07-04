@@ -1,31 +1,11 @@
 package com.ibcarpet.mixin;
 
-/*
- * This file is part of the JoaCarpet project, licensed under the
- * GNU Lesser General Public License v3.0
- *
- * Copyright (C) 2023  Joa and contributors
- *
- * JoaCarpet is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * JoaCarpet is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
- * along with JoaCarpet.  If not, see <https://www.gnu.org/licenses/>.
- */
-
-
 import com.ibcarpet.IBCarpetSettings;
 import com.ibcarpet.distributions.Distribution;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.Containers;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -47,9 +27,9 @@ public class ContainersMixin {
             double originalVelocityZ,
             Operation<Void> original,
             Level level,
-            double _originX,
-            double _originY,
-            double _originZ,
+            double originalX,
+            double originalY,
+            double originalZ,
             ItemStack _itemStack
     ) {
         if (!IBCarpetSettings.insaneBehaviors) {
@@ -59,12 +39,23 @@ public class ContainersMixin {
 
         Distribution distribution = Distribution.getCurrentDistribution();
 
+        // setting velocity of itemEntity
         Vec3 newVelocity = new Vec3(
                 distribution.sample() * 0.11485000171139836,
                 distribution.sample() * 0.11485000171139836 + 0.2,
                 distribution.sample() * 0.11485000171139836
         );
+        itemEntity.setDeltaMovement(newVelocity);
 
-        original.call(itemEntity, newVelocity.x, newVelocity.y, newVelocity.z);
+        // setting position of itemEntity
+        double size = EntityType.ITEM.getWidth();
+        double centerRange = 1.0 - size;
+        double halfSize = size / 2.0;
+        Vec3 newPos = new Vec3(
+                Math.floor(originalX) + distribution.sampleUnit() * centerRange + halfSize,
+                Math.floor(originalY) + distribution.sampleUnit() * centerRange,
+                Math.floor(originalZ) + distribution.sampleUnit() * centerRange + halfSize
+        );
+        itemEntity.setPos(newPos);
     }
 }

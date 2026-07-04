@@ -21,6 +21,7 @@ public interface Distribution {
             mix64(System.currentTimeMillis())
     ));
 
+    // range is [0, 1) and the distribution is uniform because its directly based on the output of xoroshiro128++
     public static double nextDouble() { // range is [0, 1)
         return (random.nextLong() >>> 11) / (double)(1L << 53);
     }
@@ -34,4 +35,9 @@ public interface Distribution {
     }
 
     public double sample();
+
+    default double sampleUnit() {
+        // converts range from [-1,1) to [0, 1)
+        return (sample() + 1.0) / 2.0;
+    }
 }

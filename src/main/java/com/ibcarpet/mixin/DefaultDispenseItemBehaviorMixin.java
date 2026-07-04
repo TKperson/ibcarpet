@@ -39,14 +39,13 @@ public class DefaultDispenseItemBehaviorMixin {
         }
 
         Distribution distribution = Distribution.getCurrentDistribution();
-        double pow = (distribution.sample() + 1) / 2 * 0.1 + 0.2;
+        double pow = distribution.sampleUnit() * 0.1 + 0.2;
 
         Vec3 newVelocity = new Vec3(
                 direction.getStepX() * pow + distribution.sample() * accuracy * 0.0172275,
                 0.2 + distribution.sample() * accuracy * 0.0172275,
                 direction.getStepZ() * pow + distribution.sample() * accuracy * 0.0172275
         );
-
-        original.call(itemEntity, newVelocity.x, newVelocity.y, newVelocity.z);
+        itemEntity.setDeltaMovement(newVelocity);
     }
 }
