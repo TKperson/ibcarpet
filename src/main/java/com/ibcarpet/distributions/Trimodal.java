@@ -6,7 +6,7 @@ public class Trimodal implements Distribution {
     @Override
     public double sample() {
         double alpha = IBCarpetSettings.ibTrimodalExtremeness;
-        double u = Distribution.nextDouble();
+        double u = Distribution.nextDouble() * 2.0 - 1.0;
         double u2 = u * u;
         double t = u * u2 * (1.875 * (u2 * u2) - 5.25 * u2 + 4.375);
         double val = (1.0 - alpha) * u + alpha * t;
