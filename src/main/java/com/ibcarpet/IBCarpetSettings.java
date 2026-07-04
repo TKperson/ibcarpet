@@ -15,6 +15,7 @@ public class IBCarpetSettings {
         UNIFORM,
         DISCRETE,
         BIMODAL,
+        TRIMODAL,
     }
     @Rule(
             options = {"true", "false"},
@@ -25,7 +26,7 @@ public class IBCarpetSettings {
     @Rule(
         categories = {CREATIVE, IB}
     )
-    public static DistributionType ibDistribution = DistributionType.UNIFORM;
+    public static DistributionType ibDistribution = DistributionType.TRIMODAL;
 
     public static class ResolutionValidator extends Validator<Integer> {
         @Override
@@ -43,8 +44,8 @@ public class IBCarpetSettings {
     )
     public static int ibDiscreteCuts = 4;
 
-    public static class BimodalExtremenessValidator<T extends Number> extends Validator<T> {
-        public BimodalExtremenessValidator() {
+    public static class ExtremenessValidator<T extends Number> extends Validator<T> {
+        public ExtremenessValidator() {
         }
 
         public T validate(CommandSourceStack source, CarpetRule<T> currentRule, T newValue, String string) {
@@ -57,8 +58,14 @@ public class IBCarpetSettings {
     }
 
     @Rule(
-            validators = BimodalExtremenessValidator.class,
+            validators = ExtremenessValidator.class,
             categories = {CREATIVE, IB}
     )
-    public static double ibBimodalExtremeness = 0.8;
+    public static double ibBimodalExtremeness = 0.5;
+
+    @Rule(
+            validators = ExtremenessValidator.class,
+            categories = {CREATIVE, IB}
+    )
+    public static double ibTrimodalExtremeness = 0.5;
 }

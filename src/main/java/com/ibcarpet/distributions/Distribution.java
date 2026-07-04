@@ -31,6 +31,7 @@ public interface Distribution {
             case IBCarpetSettings.DistributionType.UNIFORM -> new Uniform();
             case IBCarpetSettings.DistributionType.BIMODAL -> new Bimodal();
             case IBCarpetSettings.DistributionType.DISCRETE -> new Discrete();
+            case IBCarpetSettings.DistributionType.TRIMODAL -> new Trimodal();
         };
     }
 
