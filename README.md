@@ -83,7 +83,7 @@ much faster.
 
 All numbers are equally likely to be picked inside of this distribution. This
 is useful when testing a design for a long period of time. Uniform distribution
-will most likely catch all edge cases.
+will most likely catch all edge cases when given enough time.
 
 ### Bimodal Distribution
 
@@ -94,22 +94,23 @@ the unlikely events from the triangle distribution are likely to happen in
 the bimodal distribution. This is useful to test only the very rare edge cases.
 
 The extremeness of this distribution can be configured using `/carpet
-ibBimodalExtremeness <value>`. `value` can be a number between 0 and 1, but
-can't be 1. `0` means uniform distribution and values closer to `1` means "very
-extreme edges." The default extremeness value is `0.5`.
+ibBimodalExtremeness <value>`. `value` can be a number between `0` and `1`, but
+can't be exactly `1`. `0` means uniform distribution and values closer to `1`
+means "very extreme edges." The default extremeness value is `0.5`.
 
 ### Trimodal Distribution
 
 ![Trimodal Distribution](./assets/trimodal_distribution.png)
 
-This distribution is similar to bimodal, but values around are -1, 0, and 1
-more likely to happen. Bimodal distribution is not great at covering
-axis-aligned extremes. For example, when an item is dispensed from a dropper,
-it will pick a random velocity vector in the X and Z axes. Bimodal can only
-increase the probability of both X and Z to an extreme, it cannot increase only
-one axis at a time. This means, in this case, if bimodal has a high extreme
-value, it's only useful for testing items being dispensed diagonally, which can
-miss some edge cases that happen when items travel parallel to the world axes.
+This distribution is similar to bimodal, but values around -1, 0, and 1 are
+more likely to happen instead of just values around -1 and 1. Bimodal
+distribution is not great at covering axis-aligned extremes. For example, when
+an item is dispensed from a dropper, it will pick a random velocity vector in
+the X and Z axes. Bimodal can only increase the probability of both X and Z to
+an extreme, it cannot increase only one axis at a time. This means, in this
+case, if bimodal has a high extreme value, it's only useful for testing items
+being dispensed diagonally, which can miss some edge cases that happen when
+items travel parallel to the world axes.
 
 The extremeness of this distribution can be configured using `/carpet
 ibTrimodalExtremeness <value>`. `value` can be a number between 0 and 1, but
