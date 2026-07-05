@@ -3,7 +3,7 @@
 	"id": "ibcarpet",
 	"version": "${version}",
 	"name": "ibcarpet",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "A Carpet Extension that makes unlikely item entity RNG events likely to happen with precise control.",
 	"authors": [
 		"TKpersona"
 	],

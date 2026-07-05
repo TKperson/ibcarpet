@@ -8,7 +8,7 @@ Insane behavior is used to test item entity RNG by giving user control over the
 random number generator to forcibly generate highly unlikely numbers without
 waiting for hours.
 
-Currently this extension supports item entity RNG controls over the following actions:
+Currently, this extension supports item entity RNG controls over the following actions:
 
 - Breaking minecart
 - Piston breaking blocks
@@ -21,7 +21,7 @@ Currently this extension supports item entity RNG controls over the following ac
 To start using IBCarpet (Insane Behaviors Carpet): `/carpet insaneBehaviors
 true`. Put false instead of true if you want to turn everything off.
 
-By default ibcarpet uses the trimodal distribution with an extremeness value of
+By default, ibcarpet uses the trimodal distribution with an extremeness value of
 0.5. The distributions provided by this mod can be configured using `/carpet
 ibDistribution <distributionName>`. Distributions controls how random numbers
 are picked. Read the distribution description below to understand when to use
@@ -67,7 +67,7 @@ The shape looks like a triangle where the peak is at 0, and the frequency
 decreases as the RNG generates numbers closer to -1 and 1. This is exactly the
 behavior we see in vanilla Minecraft. For example, a dropper dispenses items into
 random directions, but from time to time, there will be one or a few items that
-travels really far than the rest. This is due to Minecraft's RNG picking
+travels further than the rest. This is due to Minecraft's RNG picking
 numbers from a triangle distribution; it mimics a normal distribution (bell
 curve) where values further from the center are highly unlikely to happen, but
 will happen eventually given enough time.
@@ -82,16 +82,16 @@ much faster.
 ![Uniform Distribution](./assets/uniform_distribution.png)
 
 All numbers are equally likely to be picked inside of this distribution. This
-is useful when testing a design for a long period of time, uniform distribution
-most likely gurantees that all edge cases has been generated.
+is useful when testing a design for a long period of time. Uniform distribution
+will most likely catch all edge cases.
 
 ### Bimodal Distribution
 
 ![Bimodal Distribution](./assets/bimodal_distribution.png)
 
 This distribution is the complete opposite of triangle distribution, where all
-of the unlikely events from the triangle distribution are likely to happen in
-the bimodal distribution. This is useful to test only the very unlikely edge cases.
+the unlikely events from the triangle distribution are likely to happen in
+the bimodal distribution. This is useful to test only the very rare edge cases.
 
 The extremeness of this distribution can be configured using `/carpet
 ibBimodalExtremeness <value>`. `value` can be a number between 0 and 1, but
@@ -103,7 +103,7 @@ extreme edges." The default extremeness value is `0.5`.
 ![Trimodal Distribution](./assets/trimodal_distribution.png)
 
 This distribution is similar to bimodal, but values around are -1, 0, and 1
-more likely to happen. Bimodal distribution is not great at convering
+more likely to happen. Bimodal distribution is not great at covering
 axis-aligned extremes. For example, when an item is dispensed from a dropper,
 it will pick a random velocity vector in the X and Z axes. Bimodal can only
 increase the probability of both X and Z to an extreme, it cannot increase only
@@ -122,7 +122,7 @@ value to its distribution.
 
 ![Discrete Distribution](./assets/discrete_distribution.png)
 
-Unlike the other distributions, discrete distribution is not continous. It
+Unlike the other distributions, discrete distribution is not continuous. It
 picks number randomly based on a pre-determined set of possible numbers. This
 set of numbers can be configured using `/carpet ibDiscreteCuts <value>`. It's
 better to show the pattern than explaining how discrete random numbers are
@@ -136,7 +136,7 @@ Here's the pattern:
 - Cut = 3, possible numbers are `[0, 0.25, 0.5, 0.75, 1]`
 
 The possible numbers are like evenly slicing up a cake. The space between each
-cuts becomes thinner as the number of cuts increases. A value is picked from
+cut becomes thinner as the number of cuts increases. A value is picked from
 this set of possible numbers as the generated number. As the number of cuts
 approaches infinity, the distribution becomes uniform.
 
@@ -155,15 +155,15 @@ extension.
 
 ## Differences between JoaCarpet
 
-JoaCarpet generates random number similar to the discrete distribution. However
+JoaCarpet generates random number similar to the discrete distribution. However,
 two main differences are that discrete distribution is independent (previous
 generation does not affect the current generation) and JoaCarpet is not
 memoryless (has a counter that remembers how many times random has been
 called). JoaCarpet's approach is to start off with the most extreme numbers: 0
 and 1. When the counter reaches 1, it resets, and automatically increase the
-number of cuts so that the next interation will go through 0, 0.5, and 1. One
+number of cuts so that the next iteration will loop through 0, 0.5, and 1. One
 major issue with this approach is that it requires manual user input to reset
-the counter and the counter is shared between all item entity randomlization
+the counter and the counter are shared between all item entity randomlization
 events. If you have multiple droppers doing the same thing, some of the
 droppers might never hit the edge cases. After leaving JoaCarpet insane
 behavior running for hours, you can encounter dropper basically dispensing
