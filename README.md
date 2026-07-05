@@ -123,10 +123,10 @@ value to its distribution.
 ![Discrete Distribution](./assets/discrete_distribution.png)
 
 Unlike the other distributions, discrete distribution is not continous. It
-picks number randomly based on a pre-determined set of possible numbers. This set of
-numbers can be configured using `/carpet ibDiscreteCuts <value>`. It's better
-to show the pattern than explaining discrete random numbers are generated in
-IBCarpet.
+picks number randomly based on a pre-determined set of possible numbers. This
+set of numbers can be configured using `/carpet ibDiscreteCuts <value>`. It's
+better to show the pattern than explaining how discrete random numbers are
+generated in IBCarpet.
 
 Here's the pattern:
 
