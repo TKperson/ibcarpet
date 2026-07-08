@@ -5,7 +5,7 @@ import com.ibcarpet.distributions.Distribution;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.world.Containers;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -48,7 +48,7 @@ public class ContainersMixin {
         itemEntity.setDeltaMovement(newVelocity);
 
         // setting position of itemEntity
-        double size = EntityType.ITEM.getWidth();
+        double size = EntityTypes.ITEM.getWidth();
         double centerRange = 1.0 - size;
         double halfSize = size / 2.0;
         Vec3 newPos = new Vec3(

@@ -6,7 +6,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -49,7 +49,7 @@ public class PistonBaseBlockMixin {
 
     @Unique
     private static void customPopResource(final Level level, final BlockPos pos, final ItemStack itemStack) {
-        double halfHeight = EntityType.ITEM.getHeight() / 2.0;
+        double halfHeight = EntityTypes.ITEM.getHeight() / 2.0;
         Distribution distribution = Distribution.getCurrentDistribution();
 
         double x = pos.getX() + 0.5 + distribution.sample() * 0.25;
