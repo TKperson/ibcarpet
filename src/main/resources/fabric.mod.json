@@ -1,8 +1,8 @@
 {
 	"schemaVersion": 1,
-	"id": "ibcarpet",
+	"id": "${id}",
 	"version": "${version}",
-	"name": "ibcarpet",
+	"name": "${name}",
 	"description": "A Carpet Extension that makes unlikely item entity RNG events likely to happen with precise control.",
 	"authors": [
 		"TKpersona"
