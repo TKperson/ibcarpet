@@ -55,8 +55,7 @@ jobs:
         uses: cloudnode-pro/modrinth-publish@v2
         with:
           token: ${{ secrets.MODRINTH_TOKEN }}
-          project: IBCarpet
-          # Since this is running in the tag push context, we use github.ref_name
+          project: dZhnUIjT
           version: ${{ github.ref_name }}
           loaders: fabric
           game-versions: ${{ steps.version.outputs.game_version }}
