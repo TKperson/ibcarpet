@@ -19,5 +19,5 @@ jobs:
           project: IBCarpet
           version: ${{ github.event.release.tag_name }}
           loaders: fabric
-          game-versions: ${{ steps.version.outputs.version }}
+          game-versions: ${{ steps.version.outputs.game_version }}
           files: build/libs/IBCarpet-${{ github.event.release.tag_name }}.jar
