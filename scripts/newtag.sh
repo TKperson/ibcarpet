@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-TAG="$(git branch --show-current)-$(date +%y-%m-%d)"
+TAG="$(git branch --show-current)-$(date +%y.%m.%d)"
 
 # If the tag already exists, delete it so it can be recreated at HEAD.
 if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
