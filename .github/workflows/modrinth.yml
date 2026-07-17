@@ -8,6 +8,11 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: Artifacts
+          path: Artifacts
       - id: version
         run: |
           GAME_VERSION="${GITHUB_REF_NAME%%-*}"
@@ -20,4 +25,4 @@ jobs:
           version: ${{ github.event.release.tag_name }}
           loaders: fabric
           game-versions: ${{ steps.version.outputs.game_version }}
-          files: build/libs/IBCarpet-${{ github.event.release.tag_name }}.jar
+          files: Artifacts/IBCarpet-${{ github.event.release.tag_name }}.jar
