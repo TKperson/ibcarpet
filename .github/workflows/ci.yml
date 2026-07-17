@@ -29,7 +29,7 @@ jobs:
       - name: build
         run: ./gradlew build
       - name: Removing sources.jar
-        run: rm -rf *sources.jar
+        run: rm -rf build/libs/*sources.jar
       - name: capture build artifacts
         uses: actions/upload-artifact@v7
         with:
