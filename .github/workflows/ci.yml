@@ -29,7 +29,7 @@ jobs:
       - name: build
         run: ./gradlew build
       - name: Removing sources.jar
-        run: rm -rf *sources.jar
+        run: rm -rf build/libs/*sources.jar
       - name: capture build artifacts
         uses: actions/upload-artifact@v7
         with:
@@ -42,3 +42,16 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           files: build/libs/*.jar
+      - id: version
+        run: |
+          GAME_VERSION="${GITHUB_REF_NAME%%-*}"
+          echo "game_version=$GAME_VERSION" >> "$GITHUB_OUTPUT"
+      - uses: cloudnode-pro/modrinth-publish@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          token: ${{ secrets.MODRINTH_TOKEN }}
+          project: IBCarpet
+          version: ${{ github.event.release.tag_name }}
+          loaders: fabric
+          game-versions: ${{ steps.version.outputs.version }}
+          files: build/libs/IBCarpet-${{ github.event.release.tag_name }}.jar
