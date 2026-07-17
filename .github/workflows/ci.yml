@@ -60,4 +60,4 @@ jobs:
           version: ${{ github.ref_name }}
           loaders: fabric
           game-versions: ${{ steps.version.outputs.game_version }}
-          files: build/libs/IBCarpet-${{ github.ref_name }}.jar
+          files: build/libs/ibcarpet-${{ github.ref_name }}.jar
