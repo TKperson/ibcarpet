@@ -42,7 +42,8 @@ jobs:
         uses: softprops/action-gh-release@v3
         with:
           files: build/libs/*.jar
-      - id: version
+      - name: Parsing version info
+        id: version
         run: |
           GAME_VERSION="${GITHUB_REF_NAME%%-*}"
           echo "game_version=$GAME_VERSION" >> "$GITHUB_OUTPUT"
